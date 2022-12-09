@@ -11,7 +11,7 @@ const randomPosition = function () {
   return Math.floor(Math.random() * 400);
 };
 const randomDiameter = function () {
-  return Math.floor(Math.random() * 300 + 25);
+  return Math.floor(Math.random() * 100 + 25);
 };
 const randomVelocity = function () {
   return Math.floor(Math.random() * 3 + 1);
@@ -22,7 +22,7 @@ const randomColor = () => {
 };
 //Constructor Class for each new Ball
 class Ball {
-  constructor(positionX, positionY, ballNum, color, velocity, diameter) {
+  constructor(positionX, positionY, ballNum, color, velocity, diameter, speed) {
     this.velocity = velocity;
     this.positionX = positionX + this.velocity;
     this.positionY = positionY + this.velocity;
@@ -31,6 +31,7 @@ class Ball {
     this.ballNum = ballNum;
     this.color = color;
     this.diameter = diameter;
+    this.speed = speed;
   }
   compareXY() {
     let ballContainer = document.querySelector(".Ball-Container");
@@ -78,41 +79,25 @@ class Ball {
     this.ballNum.style.border = `2px solid ${this.color}`;
     this.ballNum.style.boxShadow = `0px 0px 30px #ffffff`;
   }
-}
-//Constructor Class for each ball setInterval
-class Interval {
-  constructor(ballNum, speed) {
-    this.ballNum = ballNum;
-    this.speed = speed;
-  }
   startBouncing() {
     setInterval(() => {
-      this.ballNum.compareXY();
-      if (this.ballNum.reverseX === true && this.ballNum.reverseY === true) {
-        this.ballNum.moveBallBackX();
-        this.ballNum.moveBallUp();
-        this.ballNum.style1();
-      } else if (
-        this.ballNum.reverseX === true &&
-        this.ballNum.reverseY === false
-      ) {
-        this.ballNum.moveBallBackX();
-        this.ballNum.moveBallDown();
-        this.ballNum.style2();
-      } else if (
-        this.ballNum.reverseX === false &&
-        this.ballNum.reverseY === true
-      ) {
-        this.ballNum.moveBallX();
-        this.ballNum.moveBallUp();
-        this.ballNum.style2();
-      } else if (
-        this.ballNum.reverseX === false &&
-        this.ballNum.reverseY === false
-      ) {
-        this.ballNum.moveBallX();
-        this.ballNum.moveBallDown();
-        this.ballNum.style1();
+      this.compareXY();
+      if (this.reverseX === true && this.reverseY === true) {
+        this.moveBallBackX();
+        this.moveBallUp();
+        this.style1();
+      } else if (this.reverseX === true && this.reverseY === false) {
+        this.moveBallBackX();
+        this.moveBallDown();
+        this.style2();
+      } else if (this.reverseX === false && this.reverseY === true) {
+        this.moveBallX();
+        this.moveBallUp();
+        this.style2();
+      } else if (this.reverseX === false && this.reverseY === false) {
+        this.moveBallX();
+        this.moveBallDown();
+        this.style1();
       }
     }, this.speed);
   }
@@ -124,7 +109,8 @@ let bball1 = new Ball(
   ball1,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
 let bball2 = new Ball(
   randomPosition(),
@@ -132,7 +118,8 @@ let bball2 = new Ball(
   ball2,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
 let bball3 = new Ball(
   randomPosition(),
@@ -140,7 +127,8 @@ let bball3 = new Ball(
   ball3,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
 let bball4 = new Ball(
   randomPosition(),
@@ -148,7 +136,8 @@ let bball4 = new Ball(
   ball4,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
 let bball5 = new Ball(
   randomPosition(),
@@ -156,7 +145,8 @@ let bball5 = new Ball(
   ball5,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
 let bball6 = new Ball(
   randomPosition(),
@@ -164,19 +154,13 @@ let bball6 = new Ball(
   ball6,
   randomColor(),
   randomVelocity(),
-  randomDiameter()
+  randomDiameter(),
+  randomVelocity()
 );
-//Defining the intervals and linking them to the balls to prepare for initiation
-let ball1Int = new Interval(bball1, randomVelocity());
-let ball2Int = new Interval(bball2, randomVelocity());
-let ball3Int = new Interval(bball3, randomVelocity());
-let ball4Int = new Interval(bball4, randomVelocity());
-let ball5Int = new Interval(bball5, randomVelocity());
-let ball6Int = new Interval(bball6, randomVelocity());
-//Initiating each ball
-ball1Int.startBouncing();
-ball2Int.startBouncing();
-ball3Int.startBouncing();
-ball4Int.startBouncing();
-ball5Int.startBouncing();
-ball6Int.startBouncing();
+
+bball1.startBouncing();
+bball2.startBouncing();
+bball3.startBouncing();
+bball4.startBouncing();
+bball5.startBouncing();
+bball6.startBouncing();
