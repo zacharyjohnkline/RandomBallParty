@@ -70,7 +70,9 @@ class Ball {
   style1() {
     this.ballNum.style.backgroundColor = `${this.color}`;
     this.ballNum.style.border = `0px solid ${this.color}`;
-    this.ballNum.style.boxShadow = `0px 0px 10px #ffffff00`;
+    this.ballNum.style.boxShadow = `inset 0px 0px ${
+      this.diameter / 3
+    }px #00000050`;
     this.ballNum.style.width = `${this.diameter}px`;
     this.ballNum.style.height = `${this.diameter}px`;
   }
