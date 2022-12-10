@@ -1,11 +1,49 @@
 "use strict";
-//DOM connection to Balls
-let ball1 = document.querySelector(".Ball1");
-let ball2 = document.querySelector(".Ball2");
-let ball3 = document.querySelector(".Ball3");
-let ball4 = document.querySelector(".Ball4");
-let ball5 = document.querySelector(".Ball5");
-let ball6 = document.querySelector(".Ball6");
+let ballContainer = document.querySelector(".Ball-Container");
+let ballBoundaries = ballContainer.getBoundingClientRect();
+let leftBoundary = parseInt(ballBoundaries.left);
+let rightBoundary = parseInt(ballBoundaries.right) - leftBoundary;
+let topBoundary = parseInt(ballBoundaries.top);
+let bottomBoundary = parseInt(ballBoundaries.bottom) - topBoundary;
+
+//DOM connection to Buttons
+const addBallButton = document.querySelector(".Add-Ball-Container");
+const subtractBallButton = document.querySelector(".Subtract-Ball-Container");
+
+//Array containing all of the balls
+const ballArray = [];
+
+//Add and Subtract Functions
+
+const addBall = function () {
+  console.log("clicked");
+  let example = document.createElement("div");
+  example.className = "Ball";
+  let addNewBall = new Ball(
+    randomPosition(),
+    randomPosition(),
+    example,
+    randomColor(),
+    randomVelocity(),
+    randomDiameter(),
+    randomVelocity()
+  );
+  addNewBall.startBouncing();
+  ballContainer.append(example);
+  ballArray.push(example);
+
+  console.log(ballArray);
+};
+
+const subtractBall = function () {
+  if (ballArray.length === 0) {
+    return;
+  } else {
+    let lastOne = ballArray[ballArray.length - 1];
+    lastOne.remove();
+    ballArray.splice(ballArray.length - 1, 1);
+  }
+};
 //Random Generation Functions
 const randomPosition = function () {
   return Math.floor(Math.random() * 400);
@@ -104,65 +142,3 @@ class Ball {
     }, this.speed);
   }
 }
-//Defining the Balls and their parameters
-let bball1 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball1,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-let bball2 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball2,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-let bball3 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball3,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-let bball4 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball4,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-let bball5 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball5,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-let bball6 = new Ball(
-  randomPosition(),
-  randomPosition(),
-  ball6,
-  randomColor(),
-  randomVelocity(),
-  randomDiameter(),
-  randomVelocity()
-);
-
-bball1.startBouncing();
-bball2.startBouncing();
-bball3.startBouncing();
-bball4.startBouncing();
-bball5.startBouncing();
-bball6.startBouncing();

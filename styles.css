@@ -27,26 +27,57 @@ body {
 .Ball-Container {
   position: absolute;
   top: 20%;
-  left: 50%;
   width: 100%;
   height: 80%;
-  transform: translateX(-50%);
   background-color: #ffffff20;
 }
 .Title-Container {
   background: #ffffff50;
   width: 100%;
   height: 20%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
   justify-content: center;
   align-items: center;
 }
 .Title {
   font-family: "Courier New", Courier, monospace;
-  font-size: calc((20px + 80 * ((100vw - 320px) / 1600)));
+  font-size: calc((20px + 40 * ((100vw - 320px) / 1600)));
   text-align: center;
   color: white;
 }
+
+.Add-Ball-Container,
+.Subtract-Ball-Container {
+  align-self: center;
+  justify-self: center;
+  width: 50%;
+  height: 50%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+}
+
+.Add-Ball-Container:hover,
+.Subtract-Ball-Container:hover {
+  background-color: #ffffff50;
+}
+
+#Add-Ball {
+  font-family: "Courier New", Courier, monospace;
+  font-size: calc((20px + 40 * ((100vw - 320px) / 1600)));
+  text-align: center;
+  color: white;
+}
+#Subtract-Ball {
+  font-family: "Courier New", Courier, monospace;
+  font-size: calc((20px + 40 * ((100vw - 320px) / 1600)));
+  text-align: center;
+  color: white;
+}
+
 .Ball {
   position: absolute;
   top: 0;
